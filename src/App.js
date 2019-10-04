@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import AppHeader from './components/AppHeader'
+
 import './App.css';
 
 function App() {
@@ -8,7 +10,7 @@ function App() {
     <div className="main-layout">
 
       <header>
-        <h1>Header</h1>
+        <AppHeader />
       </header>
 
 

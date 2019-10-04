@@ -13,9 +13,6 @@ html body {
 
 header {
   grid-area: head;
-  background-color: #666;
-  text-align: center;
-  color: white;
 }
 
 nav {
@@ -41,10 +38,35 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .the-page{
+    .main-layout {
       box-sizing: border-box;
       grid-template-columns: 1fr;
       grid-template-areas: "head" "nav" "content" "footer";   
       grid-template-rows: min-content min-content auto min-content; 
     }
+}
+
+/* AppHeader */
+
+.SmartBagLogo {
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+
+.SearchBarContainer {
+  float: right;
+  margin-top: 5px;
+  margin-right: 40px;
+}
+
+.AppHeader input[type=text] {
+  padding: 20px;
+  font-size: 30px;
+  border: none;
+  outline: none;
+}
+
+.SearchIcon {
+  height: 30px;
 }
