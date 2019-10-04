@@ -38,12 +38,25 @@ footer {
 }
 
 @media (max-width: 600px) {
+
     .main-layout {
       box-sizing: border-box;
       grid-template-columns: 1fr;
       grid-template-areas: "head" "nav" "content" "footer";   
       grid-template-rows: min-content min-content auto min-content; 
     }
+}
+
+@media (max-width: 400px) {
+
+    .AppHeader input[type=text] {
+      float: left !important;
+      font-size: x-large !important;
+      margin: 10px !important;
+      border: none;
+      outline: none;
+    }
+    
 }
 
 /* AppHeader */
@@ -54,19 +67,10 @@ footer {
   height: 80px;
 }
 
-.SearchBarContainer {
-  float: right;
-  margin-top: 5px;
-  margin-right: 40px;
-}
-
 .AppHeader input[type=text] {
-  padding: 20px;
-  font-size: 30px;
+  float: right;
+  margin-top: 20px;
+  font-size: xx-large;
   border: none;
   outline: none;
-}
-
-.SearchIcon {
-  height: 30px;
 }

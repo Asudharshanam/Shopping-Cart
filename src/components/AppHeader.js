@@ -10,7 +10,7 @@ export function AppHeader() {
             <div className="SearchBarContainer">
                 <form>
                     <input type="text" placeholder="Search.." name="search" />
-                    <img className="SearchIcon" src={SearchIcon}></img>
+                    {/* <img className="SearchIcon" src={SearchIcon}></img> */}
                 </form>
             </div>
         </div>
