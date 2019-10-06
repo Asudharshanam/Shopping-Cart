@@ -5,7 +5,7 @@ export function CartItems({ toggleCart, cartItems, closeModal, updateCart }) {
     function updateCartItems(event) {
         let items = Object.values(cartItems)
         let filterForDeletedItem = items.filter(item => item.itemId !== event.target.name)
-        let filteredItem = {...filterForDeletedItem}
+        let filteredItem = { ...filterForDeletedItem }
         updateCart(filteredItem)
     }
 
@@ -49,7 +49,7 @@ export class Cart extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.toggleCartItems(true)}>Cart</button>
+                <button onClick={() => this.toggleCartItems(true)}>Cart{getCartItemsCount(this.props.cartItems)}</button>
                 <CartItems
                     toggleCart={this.state.toggleCart}
                     cartItems={this.props.cartItems}
@@ -58,6 +58,13 @@ export class Cart extends React.Component {
                 />
             </div>
         )
+    }
+}
+
+export function getCartItemsCount(cartItems) {
+    let numberOfItems = Object.values(cartItems).length
+    if(numberOfItems) {
+        return <div>{numberOfItems}</div>
     }
 }
 
