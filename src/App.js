@@ -1,25 +1,33 @@
 
 import React from 'react';
+import { Route, BrowserRouter as Router } from 'react-router-dom'
 
 import AppHeader from './components/AppHeader'
+import AppFooter from './components/AppFooter'
 import ItemListCards from './containers/ItemListCards';
 import Cart from './containers/Cart'
+import Payment from './containers/Payment'
 
 import './App.css';
 
 function App() {
   return (
     <div className="main-layout">
-      <header>
-        <AppHeader />
-        <Cart />
-      </header>
-      <article>
-        <ItemListCards />
-      </article>
-      <footer>
-        <p>Footer</p>
-      </footer>
+      <Router>
+        <header>
+          <AppHeader />
+          <Cart />
+        </header>
+        <article>
+          <div>
+            <Route exact path="/" component={ItemListCards} />
+            <Route path="/payment" component={Payment} />
+          </div>
+        </article>
+        <footer>
+          <AppFooter />
+        </footer>
+      </Router>
     </div>
   );
 }

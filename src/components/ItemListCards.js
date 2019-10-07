@@ -78,6 +78,7 @@ export class ItemListCards extends React.Component {
                             <button className="ProductShowDetailsButton" onClick={() => this.showDetails(item.itemImage, item.itemOverview)}>More Details</button>
                             <br />
                             <button
+                                className="AddToCartButton"
                                 name={item.itemId}
                                 onClick={this.addItemToCart}
                             >

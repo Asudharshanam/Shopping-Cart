@@ -1,7 +1,8 @@
 import React from 'react'
 import CartIcon from '../icons/CartIcon.png'
+import { withRouter } from 'react-router-dom'
 
-export function CartItems({ toggleCart, cartItems, closeModal, updateCart }) {
+export function CartItems({ toggleCart, cartItems, closeModal, updateCart, history }) {
 
     function updateCartItems(event) {
         let items = Object.values(cartItems)
@@ -10,26 +11,27 @@ export function CartItems({ toggleCart, cartItems, closeModal, updateCart }) {
         updateCart(filteredItem)
     }
 
+    function continueToPayment() {
+        if (content.length) {
+            closeModal()
+            history.push("/payment")
+        }
+    }
+
     const content = Object.values(cartItems)
     if (toggleCart) {
         return (
             <div className="ModalDialog">
                 <div className="ModalContent">
                     <span onClick={closeModal} className="ModalDialogCloseButton">x</span>
-                    {content.length && <div>{getTotalAmount(content)}<hr></hr></div>}
-                    <div className="ModalItem">
-                        {content.length && content.map(item => (
-                            <div key={item.itemId}>
-                                <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
-                                <h1>{item.itemtitle}</h1>
-                                <p>{item.itemCost}</p>
-                                <p>{item.itemDescription}</p>
-                                <p>Added to Cart</p>
-                                <button name={item.itemId} onClick={updateCartItems}>Delete Item</button>
-                            </div>
-                        ))}
-                    </div>
+                    {GetCartItems(content, updateCartItems)}
                     {!content.length && <p>Your cart is empty</p>}
+                    <button
+                        onClick={continueToPayment}
+                        className={content.length ? "ContinueButton": "DisabledButton"}
+                    >
+                        Continue to payment
+                        </button>
                 </div>}
             </div >
         )
@@ -67,7 +69,30 @@ export class Cart extends React.Component {
                     cartItems={this.props.cartItems}
                     closeModal={() => this.toggleCartItems(false)}
                     updateCart={this.props.updateCart}
+                    history={this.props.history}
                 />
+            </div>
+        )
+    }
+}
+
+function GetCartItems(content, updateCartItems) {
+    if (content.length) {
+        return (
+            <div>
+                <div>{getTotalAmount(content)}<hr></hr></div>
+                <div className="ModalItem">
+                    {content.length && content.map(item => (<div key={item.itemId}>
+                        <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
+                        <h1>{item.itemtitle}</h1>
+                        <p>{item.itemCost}</p>
+                        <p>{item.itemDescription}</p>
+                        <p>Added to Cart</p>
+                        <button className="ProductShowDetailsButton" name={item.itemId} onClick={updateCartItems}>
+                            Delete Item
+                </button>
+                    </div>))}
+                </div>
             </div>
         )
     }
@@ -92,4 +117,4 @@ export function getTotalAmount(content) {
     }
 }
 
-export default Cart
+export default withRouter(Cart)
