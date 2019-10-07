@@ -6,18 +6,13 @@ html body {
  min-height: 100vh;
  display: grid;
  grid-template-columns: 2fr 8fr;
- grid-template-areas: "head head" "nav content" "footer footer";
+ grid-template-areas: "head head" "content content" "footer footer";
  grid-template-rows: min-content auto min-content; 
 }
 
 header {
   grid-area: head;
-}
-
-nav {
-  grid-area: nav;
-  background: #ccc;
-  padding: 20px;
+  background-color: grey
 }
 
 article {
@@ -25,24 +20,24 @@ article {
   padding: 20px;
   box-sizing: border-box;
   width: 100%;
-  background-color: skyblue 
 }
 
 footer {
   grid-area: footer;
-  position: relative;
-  padding: 1rem;
+  width: 100%;
+  bottom: 0;
+  padding: 10px;
   background-color: #efefef;
   text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 801px) {
 
     .main-layout {
       box-sizing: border-box;
       grid-template-columns: 1fr;
-      grid-template-areas: "head" "nav" "content" "footer";   
-      grid-template-rows: min-content min-content auto min-content; 
+      grid-template-areas: "head" "content" "footer";   
+      grid-template-rows: min-content auto min-content; 
     }
 }
 
@@ -58,15 +53,90 @@ footer {
 
 .ItemListCards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .ItemListCards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 801px) {
+  .ItemListCards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ItemListCards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.ShowDetails {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.JerseyImage {
+  width: 145px;
+  height: 145px;
 }
 
 .ListCards {
   width: auto;
   height: auto;
-  background-color: antiquewhite;
+  text-align: center;
+}
+
+.ProductShowDetailsButton {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProductOverviewImage {
+  width: 300px;
+}
+
+@media (min-width: 801px) {
+  .ProductDetails {
+    display: flex;
+    justify-content: space-evenly
+  }
+
+  .ProductOverviewImage {
+    width: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ProductDetails {
+    display: flex;
+    justify-content: space-evenly
+  }
+
+  .ProductOverviewImage {
+    width: 420px;
+  }
+}
+
+.CartButton {
+  float: right;
+  margin: 10px;
+}
+
+.CartIcon {
+  width: 45px;
 }
 
 /* ModalDialog */
@@ -90,13 +160,20 @@ footer {
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+}
+
+.ModalItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
 }
 
 .ModalDialogCloseButton {
   color: #aaaaaa;
   float: right;
-  font-size: 28px;
-  font-weight: bold;
 }
 
 .ModalDialogCloseButton:hover,

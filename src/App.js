@@ -14,9 +14,6 @@ function App() {
         <AppHeader />
         <Cart />
       </header>
-      <nav>
-        <h1>Nav</h1>
-      </nav>
       <article>
         <ItemListCards />
       </article>

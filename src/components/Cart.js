@@ -1,4 +1,5 @@
 import React from 'react'
+import CartIcon from '../icons/CartIcon.png'
 
 export function CartItems({ toggleCart, cartItems, closeModal, updateCart }) {
 
@@ -15,24 +16,26 @@ export function CartItems({ toggleCart, cartItems, closeModal, updateCart }) {
             <div className="ModalDialog">
                 <div className="ModalContent">
                     <span onClick={closeModal} className="ModalDialogCloseButton">x</span>
-                    {content.length && content.map(item => (
-                        <div key={item.itemId}>
-                            <h1>{item.itemtitle}</h1>
-                            <p>{item.itemCost}</p>
-                            <p>{item.itemDescription}</p>
-                            <p>Added to Cart</p>
-                            <button name={item.itemId} onClick={updateCartItems}>Delete Item</button>
-                            <hr></hr>
-                        </div>
-                    ))}
+                    {content.length && <div>{getTotalAmount(content)}<hr></hr></div>}
+                    <div className="ModalItem">
+                        {content.length && content.map(item => (
+                            <div key={item.itemId}>
+                                <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
+                                <h1>{item.itemtitle}</h1>
+                                <p>{item.itemCost}</p>
+                                <p>{item.itemDescription}</p>
+                                <p>Added to Cart</p>
+                                <button name={item.itemId} onClick={updateCartItems}>Delete Item</button>
+                            </div>
+                        ))}
+                    </div>
                     {!content.length && <p>Your cart is empty</p>}
                 </div>}
-            </div>
+            </div >
         )
     }
     return null
 }
-
 
 export class Cart extends React.Component {
     constructor(props) {
@@ -49,7 +52,16 @@ export class Cart extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.toggleCartItems(true)}>Cart{getCartItemsCount(this.props.cartItems)}</button>
+                <button
+                    className="CartButton"
+                    onClick={() => this.toggleCartItems(true)}
+                >
+                    <img
+                        alt="CartIcon"
+                        className="CartIcon"
+                        src={CartIcon} />
+                    {getCartItemsCount(this.props.cartItems)}
+                </button>
                 <CartItems
                     toggleCart={this.state.toggleCart}
                     cartItems={this.props.cartItems}
@@ -63,8 +75,20 @@ export class Cart extends React.Component {
 
 export function getCartItemsCount(cartItems) {
     let numberOfItems = Object.values(cartItems).length
-    if(numberOfItems) {
+    if (numberOfItems) {
         return <div>{numberOfItems}</div>
+    }
+}
+
+export function getTotalAmount(content) {
+
+    if (content.length) {
+        let getCost = content.map(item => item.itemCost.replace(/\$/g, ''))
+        let getArrayOfNumbers = getCost.map(Number)
+        let totalCost = getArrayOfNumbers.reduce((a, b) => a + b)
+        return (
+            <div>Total Amount: ${totalCost}</div>
+        )
     }
 }
 
