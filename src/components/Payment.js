@@ -1,10 +1,18 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { getCreditCardIconWithInput, getCvcIconWithInput } from './InputFieldsWithIcons'
 
-export function Payment({ onPaymentDetailsChange, paymentDetails, submitPaymentDetails, cardType }) {
+export function Payment({
+    onPaymentDetailsChange,
+    paymentDetails,
+    submitPaymentDetails,
+    cardType,
+    history
+}) {
 
     function onSubmit() {
         submitPaymentDetails(paymentDetails)
+        history.push('/success')
     }
 
     return (
@@ -62,9 +70,9 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType }
 
             <legend className="Legend">CVC:</legend>
             {getCvcIconWithInput(onChange, paymentDetails, cardType)}
-            
+
         </form>
     )
 }
 
-export default Payment
+export default withRouter(Payment)

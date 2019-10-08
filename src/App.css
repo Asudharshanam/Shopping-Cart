@@ -370,3 +370,12 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   font-size: 17px;
 }
+
+.SubmittedSuccess {
+  text-align: center
+}
+
+.SuccessIcon {
+  width: 80px;
+  height: 80px;
+}

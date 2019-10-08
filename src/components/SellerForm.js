@@ -1,6 +1,7 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
-export function SellerForm({ formDetailsChange, sellerFormDetails }) {
+export function SellerForm({ formDetailsChange, sellerFormDetails, history }) {
 
     function getImageBase64(event) {
 
@@ -26,6 +27,7 @@ export function SellerForm({ formDetailsChange, sellerFormDetails }) {
 
     function onSubmit(event) {
         event.preventDefault()
+        history.push('/success')
         console.log(sellerFormDetails)
     }
 
@@ -86,4 +88,4 @@ export function SellerForm({ formDetailsChange, sellerFormDetails }) {
     )
 }
 
-export default SellerForm
+export default withRouter(SellerForm)

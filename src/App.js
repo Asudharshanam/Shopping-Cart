@@ -9,6 +9,7 @@ import Cart from './containers/Cart'
 import Payment from './containers/Payment'
 import WelcomePage from './components/WelcomePage';
 import SellerForm from './containers/SellerForm';
+import { SubmittedSuccess } from './components/SubmittedSuccess';
 
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
           <div>
             <Route exact path="/" component={WelcomePage} />
             <Route path="/seller-form" component={SellerForm} />
+            <Route path="/success" component={SubmittedSuccess} />
             <Route path="/shopping-items" component={ItemListCards} />
             <Route path="/payment" component={Payment} />
           </div>
