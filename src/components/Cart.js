@@ -2,7 +2,7 @@ import React from 'react'
 import CartIcon from '../icons/CartIcon.png'
 import { withRouter } from 'react-router-dom'
 
-export function CartItems({ toggleCart, cartItems, closeModal, updateCart, history, totalAmount }) {
+export function CartItems({ toggleCart, cartItems, closeModal, updateCart, history }) {
 
     function updateCartItems(event) {
         let items = Object.values(cartItems)
@@ -24,7 +24,7 @@ export function CartItems({ toggleCart, cartItems, closeModal, updateCart, histo
             <div className="ModalDialog">
                 <div className="ModalContent">
                     <span onClick={closeModal} className="ModalDialogCloseButton">x</span>
-                    <GetCartItems content={content} updateCartItems={updateCartItems} totalAmount={totalAmount} />
+                    <GetCartItems content={content} updateCartItems={updateCartItems} />
                     {!content.length && <p>Your cart is empty</p>}
                     <button
                         onClick={continueToPayment}
@@ -70,18 +70,17 @@ export class Cart extends React.Component {
                     closeModal={() => this.toggleCartItems(false)}
                     updateCart={this.props.updateCart}
                     history={this.props.history}
-                    totalAmount={this.props.totalAmount}
                 />
             </div>
         )
     }
 }
 
-export function GetCartItems({ content, updateCartItems, totalAmount }) {
+function GetCartItems({ content, updateCartItems }) {
     if (content.length) {
         return (
             <div>
-                <div>TotalAmount: ${totalAmount}<hr></hr></div>
+                <div>{getTotalAmount(content)}<hr></hr></div>
                 <div className="ModalItem">
                     {content.length && content.map(item => (<div key={item.itemId}>
                         <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
@@ -97,12 +96,25 @@ export function GetCartItems({ content, updateCartItems, totalAmount }) {
             </div>
         )
     }
+    return null
 }
 
 export function getCartItemsCount(cartItems) {
     let numberOfItems = Object.values(cartItems).length
     if (numberOfItems) {
         return <div>{numberOfItems}</div>
+    }
+}
+
+export function getTotalAmount(content) {
+
+    if (content.length) {
+        let getCost = content.map(item => item.itemCost.replace(/\$/g, ''))
+        let getArrayOfNumbers = getCost.map(Number)
+        let totalCost = getArrayOfNumbers.reduce((a, b) => a + b)
+        return (
+            <div>Total Amount: ${totalCost}</div>
+        )
     }
 }
 
