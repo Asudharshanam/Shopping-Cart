@@ -296,3 +296,29 @@ footer {
   cursor: pointer;
   font-size: 17px;
 }
+
+.CvcType:hover + .CvcTypeTooltip { 
+  display: block; 
+}
+
+.CvcType {
+  position:absolute;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  margin: 9px;
+}
+
+.CvcTypeTooltip { 
+  display: none; 
+}
+
+.IconContainerWithInput input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.IconContainerWithInput input[type=number] {
+  -moz-appearance:textfield; /* Firefox */
+}
