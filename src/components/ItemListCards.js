@@ -7,7 +7,7 @@ import jerseyImage4 from '../icons/jerseyImage4.jpg'
 const cardsList = [
     {
         itemId: "1",
-        itemTitle: "Item Title0",
+        itemTitle: "Men's San Francisco 49ers Jimmy Garoppolo Nike Scarlet Legend Jersey",
         itemCost: "$30",
         itemDescription: "This is the item Description",
         itemOverview: "Style:	Casual\n Color:	White\n Pattern Type:	Striped, Colorblock\n Neckline:	Hooded\n Type:	Pullovers\n Details:	Drawstring, Colorblock\n Sleeve Length:	Long Sleeve\n Season:	Fall/Winter\n Composition:	Cotton\n Fit Type:	Regular Fit",
@@ -15,7 +15,7 @@ const cardsList = [
     },
     {
         itemId: "2",
-        itemTitle: "Item Title2",
+        itemTitle: "Men's San Francisco 49ers George Kittle Nike Black Alternate Game Jersey",
         itemCost: "$100",
         itemDescription: "This is the item Description2",
         itemOverview: "Style:	Casual\n Color:	Red\n Pattern Type:	Plain\n Neckline:	High Neck\n Length:	Regular\n Type:	Pullovers\n Sleeve Length:	Long Sleeve\n Season:	Spring/Fall\n Composition:	100% Polyester\n Fabric:	Fabric has some stretch\n Fit Type:	Slim Fit",
@@ -23,7 +23,7 @@ const cardsList = [
     },
     {
         itemId: "3",
-        itemTitle: "Item Title3",
+        itemTitle: "Men's San Francisco 49ers Joe Montana Nike Scarlet Retired Player Vapor Untouchable Limited Throwback Jersey",
         itemCost: "$1000",
         itemDescription: "This is the item Description3",
         itemOverview: "Style:	Casual\n Color:	Multicolor\n Pattern Type:	Colorblock, Plants\n Neckline:	Hooded\n Type:	Pullovers\n Details:	Embroidery, Drawstring\n Sleeve Length:	Long Sleeve\n Season:	Fall/Winter\n Composition:	97% Polyester, 3% Spandex\n Fabric:	Fabric has some stretch\n Fit Type:	Regular Fit",
@@ -31,7 +31,7 @@ const cardsList = [
     },
     {
         itemId: "4",
-        itemTitle: "Item Title4",
+        itemTitle: "Men's San Francisco 49ers Jerry Rice Nike Camo 2019 Salute to Service Retired Limited Jersey",
         itemCost: "$500",
         itemDescription: "This is the item Description4",
         itemOverview: "Style:	Casual\n Color:	Multicolor\n Pattern Type:	Cartoon, Colorblock\n Neckline:	Hooded",
@@ -70,7 +70,7 @@ export class ItemListCards extends React.Component {
             <div className="ItemListCards">
                 {cardsList.map(item => (
                     <div key={item.itemId} className="ListCards">
-                        <h1>{item.itemTitle}</h1>
+                        <h5>{item.itemTitle}</h5>
                         <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
                         <p>{item.itemDescription}</p>
                         <p>{item.itemCost}</p>
