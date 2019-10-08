@@ -23,7 +23,7 @@ const cardsList = [
     },
     {
         itemId: "3",
-        itemTitle: "Men's San Francisco 49ers Joe Montana Nike Scarlet Retired Player Vapor Untouchable Limited Throwback Jersey",
+        itemTitle: "Men's Player Vapor Untouchable Limited Throwback Jersey",
         itemCost: "$1000",
         itemDescription: "This is the item Description3",
         itemOverview: "Style:	Casual\n Color:	Multicolor\n Pattern Type:	Colorblock, Plants\n Neckline:	Hooded\n Type:	Pullovers\n Details:	Embroidery, Drawstring\n Sleeve Length:	Long Sleeve\n Season:	Fall/Winter\n Composition:	97% Polyester, 3% Spandex\n Fabric:	Fabric has some stretch\n Fit Type:	Regular Fit",
