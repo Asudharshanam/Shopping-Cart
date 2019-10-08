@@ -3,7 +3,8 @@ import { paymentDetailsChange } from '../actions/payment'
 import Payment from '../components/Payment'
 
 export const mapStateToProps = state => ({
-    paymentDetails: state.payment.paymentDetails
+    paymentDetails: state.payment.paymentDetails,
+    cardType: state.payment.cardTypeEntered
 })
 
 export const mapDispatchToprops = dispatch => ({

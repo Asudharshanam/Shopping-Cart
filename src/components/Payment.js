@@ -1,6 +1,10 @@
 import React from 'react'
+import AmericanExpress from '../icons/amex.png'
+import Visa from '../icons/visa.png'
+import MasterCard from '../icons/mastercard.png'
+import Discover from '../icons/discover.png'
 
-export function Payment({ onPaymentDetailsChange, paymentDetails, submitPaymentDetails }) {
+export function Payment({ onPaymentDetailsChange, paymentDetails, submitPaymentDetails, cardType }) {
 
     function onSubmit() {
         submitPaymentDetails(paymentDetails)
@@ -12,13 +16,14 @@ export function Payment({ onPaymentDetailsChange, paymentDetails, submitPaymentD
             <PaymentForm
                 onPaymentDetailsChange={onPaymentDetailsChange}
                 paymentDetails={paymentDetails}
+                cardType={cardType}
             />
             <button className="SubmitPaymentButton" type="submit" onClick={onSubmit}>Submit</button>
         </div>
     )
 }
 
-export function PaymentForm({ onPaymentDetailsChange, paymentDetails }) {
+export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType }) {
 
     function onChange(event) {
         onPaymentDetailsChange({ [event.target.name]: event.target.value })
@@ -44,15 +49,10 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails }) {
                 onChange={onChange}
                 value={paymentDetails.lastName}
             />
+
             <legend className="Legend">Card Number:</legend>
-            <input
-                onBlur={() => { }}
-                name="cardNumber"
-                type="number"
-                placeholder="Enter Card Number"
-                onChange={onChange}
-                value={paymentDetails.cardNumber}
-            />
+            {getCreditCardIconWithInput(onChange, paymentDetails, cardType)}
+
             <legend className="Legend">Expiration Date:</legend>
             <input
                 onBlur={() => { }}
@@ -73,6 +73,38 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails }) {
             />
         </form>
     )
+}
+
+export function getCreditCardIconWithInput(onChange, paymentDetails, cardType) {
+    return (
+        <div className="IconContainerWithInput">
+            <input
+                onBlur={() => { }}
+                name="cardNumber"
+                type="number"
+                placeholder="Enter Card Number"
+                onChange={onChange}
+                value={paymentDetails.cardNumber}
+            />
+            {getCreditCardIcon(cardType)}
+        </div>
+    )
+}
+
+export function getCreditCardIcon(cardType) {
+    switch (cardType) {
+        case "visa":
+            return <img src={Visa} className="CreditCardIcon"></img>
+
+        case "masterCard":
+            return <img src={MasterCard} className="CreditCardIcon"></img>
+
+        case "americanExpress":
+            return <img src={AmericanExpress} className="CreditCardIcon"></img>
+
+        case "discover":
+            return <img src={Discover} className="CreditCardIcon"></img>
+    }
 }
 
 export default Payment
