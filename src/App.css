@@ -298,8 +298,25 @@ footer {
 }
 
 .CvcType:hover + .CvcTypeTooltip { 
-  display: block; 
+  position: absolute;
+  right: 5px;
+  top: -175px;
+  z-index: 3;
+  float: right;
+  display: block;
 }
+
+.CvcType:hover + .CvcTypeTooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 88%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
 
 .CvcType {
   position:absolute;
