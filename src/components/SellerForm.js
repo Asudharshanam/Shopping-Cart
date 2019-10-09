@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-export function SellerForm({ formDetailsChange, sellerFormDetails, history }) {
+export function SellerForm({ formDetailsChange, sellerFormDetails, history, onSubmitItem }) {
 
     function getImageBase64(event) {
 
@@ -28,7 +28,7 @@ export function SellerForm({ formDetailsChange, sellerFormDetails, history }) {
     function onSubmit(event) {
         event.preventDefault()
         history.push('/success')
-        console.log(sellerFormDetails)
+        onSubmitItem(sellerFormDetails)
     }
 
     return (
@@ -36,6 +36,16 @@ export function SellerForm({ formDetailsChange, sellerFormDetails, history }) {
             <form className="Form">
                 <h2>Enter Item Details</h2>
                 
+                <legend className="Legend">SKU:</legend>
+                <input
+                    onBlur={() => { }}
+                    name="sku"
+                    type="text"
+                    placeholder="Enter SKU"
+                    onChange={onChange}
+                    value={sellerFormDetails.sku}
+                />
+
                 <legend className="Legend">Title:</legend>
                 <input
                     onBlur={() => { }}

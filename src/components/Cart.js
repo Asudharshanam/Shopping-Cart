@@ -6,7 +6,7 @@ export function CartItems({ toggleCart, cartItems, closeModal, updateCart, histo
 
     function updateCartItems(event) {
         let items = Object.values(cartItems)
-        let filterForDeletedItem = items.filter(item => item.itemId !== event.target.name)
+        let filterForDeletedItem = items.filter(item => item.sku !== event.target.name)
         let filteredItem = { ...filterForDeletedItem }
         updateCart(filteredItem)
     }
@@ -82,13 +82,13 @@ function GetCartItems({ content, updateCartItems }) {
             <div>
                 <div>{getTotalAmount(content)}<hr></hr></div>
                 <div className="ModalItem">
-                    {content.length && content.map(item => (<div key={item.itemId}>
+                    {content.length && content.map(item => (<div key={item.sku}>
                         <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
                         <h1>{item.itemtitle}</h1>
                         <p>{item.itemCost}</p>
                         <p>{item.itemDescription}</p>
                         <p>Added to Cart</p>
-                        <button className="ProductShowDetailsButton" name={item.itemId} onClick={updateCartItems}>
+                        <button className="ProductShowDetailsButton" name={item.sku} onClick={updateCartItems}>
                             Delete Item
                 </button>
                     </div>))}

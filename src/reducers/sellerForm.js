@@ -6,7 +6,8 @@ export const initialState= {
         itemDescription: "",
         itemImage: "",
         itemOverview: "",
-        itemCost: ""
+        itemCost: "",
+        sku: ""
     }
 }
 

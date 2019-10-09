@@ -17,18 +17,17 @@ export function Payment({
 
     return (
         <div>
-            <h1>Billing Information</h1>
             <PaymentForm
                 onPaymentDetailsChange={onPaymentDetailsChange}
                 paymentDetails={paymentDetails}
                 cardType={cardType}
+                onSubmit={onSubmit}
             />
-            <button className="SubmitPaymentButton" type="submit" onClick={onSubmit}>Submit</button>
         </div>
     )
 }
 
-export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType }) {
+export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType, onSubmit }) {
 
     function onChange(event) {
         onPaymentDetailsChange({ [event.target.name]: event.target.value })
@@ -36,6 +35,9 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType }
 
     return (
         <form className="Form">
+
+            <h1>Billing Information</h1>
+
             <legend className="Legend">First Name:</legend>
             <input
                 onBlur={() => { }}
@@ -70,6 +72,8 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType }
 
             <legend className="Legend">CVC:</legend>
             {getCvcIconWithInput(onChange, paymentDetails, cardType)}
+
+            <button className="SubmitPaymentButton" type="submit" onClick={onSubmit}>Submit</button>
 
         </form>
     )

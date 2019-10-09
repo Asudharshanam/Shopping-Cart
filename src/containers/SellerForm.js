@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { sellerFormDetailsChange } from '../actions/sellerForm'
+import { sellerFormDetailsChange, postUploadedItem } from '../actions/sellerForm'
 import SellerForm from '../components/SellerForm'
 
 export const mapStateToProps = state => ({
@@ -10,6 +10,10 @@ export const mapDispatchToProps = dispatch => ({
 
     formDetailsChange: (changedValue) => {
         dispatch(sellerFormDetailsChange(changedValue))
+    },
+
+    onSubmitItem: (formDetail) => {
+        dispatch(postUploadedItem(formDetail))
     }
 
 })

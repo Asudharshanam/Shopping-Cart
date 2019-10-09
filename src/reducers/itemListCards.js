@@ -20,7 +20,7 @@ export function ItemListCards(state = initialState, action) {
 
         case ADD_TO_CART:
 
-            let mutipleItemsWithId = { [action.itemDetails.itemId]: action.itemDetails }
+            let mutipleItemsWithId = { [action.itemDetails.sku]: action.itemDetails }
             return {
                 ...state,
                 selectedItem: {

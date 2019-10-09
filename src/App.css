@@ -12,11 +12,15 @@ html body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   grid-area: head;
   background-color: #4CAF50;
 }
 
 article {
+  margin-top: 5rem;
   grid-area: content;
   padding: 20px;
   box-sizing: border-box;

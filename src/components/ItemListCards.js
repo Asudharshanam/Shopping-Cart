@@ -12,7 +12,7 @@ export class ItemListCards extends React.Component {
 
     addItemToCart = (event) => {
 
-        let selectedItem = this.props.itemsList.find(item => item.itemId === event.target.name)
+        let selectedItem = this.props.itemsList.find(item => item.sku === event.target.name)
         this.props.addToCart(selectedItem)
     }
 
@@ -31,7 +31,7 @@ export class ItemListCards extends React.Component {
         return (
             <div className="ItemListCards">
                 {this.props.itemsList.map(item => (
-                    <div key={item.itemId} className="ListCards">
+                    <div key={item.sku} className="ListCards">
                         <h5>{item.itemTitle}</h5>
                         <img alt="JerseyImage" className="JerseyImage" src={item.itemImage} />
                         <p>{item.itemDescription}</p>
@@ -41,7 +41,7 @@ export class ItemListCards extends React.Component {
                             <br />
                             <button
                                 className="AddToCartButton"
-                                name={item.itemId}
+                                name={item.sku}
                                 onClick={this.addItemToCart}
                             >
                                 Add to Cart
@@ -71,7 +71,7 @@ export function ProductOverviewModal({ show, content, closeModal }) {
                     <hr></hr>
                     <div className="ProductDetails">
                         <img className="ProductOverviewImage" alt="JerseyImage" src={content.showDetailsImage}></img>
-                        <h4>{newText}</h4>
+                        <h5>{newText}</h5>
                     </div>
                 </div>
             </div>
