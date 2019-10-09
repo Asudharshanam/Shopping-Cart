@@ -11,7 +11,7 @@ export function SellerForm({ formDetailsChange, sellerFormDetails, history }) {
         fileReader.onload = loadFile
         function loadFile(readerEvent) {
             base64 = readerEvent.target.result
-            formDetailsChange({ "itemImage": base64.split(',')[1] })
+            formDetailsChange({ "itemImage": base64 })
             return base64
         }
         fileReader.readAsDataURL(file)
@@ -33,8 +33,9 @@ export function SellerForm({ formDetailsChange, sellerFormDetails, history }) {
 
     return (
         <div>
-            <h2>Enter Item Details</h2>
             <form className="Form">
+                <h2>Enter Item Details</h2>
+                
                 <legend className="Legend">Title:</legend>
                 <input
                     onBlur={() => { }}

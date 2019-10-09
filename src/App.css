@@ -247,6 +247,14 @@ footer {
   padding: 0px 10px 3px
 }
 
+@media (min-width: 1024px) {
+  .Form {
+    text-align: center;
+    max-width: 800px;
+    margin: auto
+  }
+}
+
 .Form input {
   font-size: 17px ;
   outline: 0;
