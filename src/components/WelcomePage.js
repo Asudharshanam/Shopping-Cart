@@ -6,7 +6,7 @@ export function WelcomePage({ history }) {
     function wantToBuy() {
         history.push('/shopping-items')
     }
-   
+
     function wantToSell() {
         history.push('/seller-form')
     }

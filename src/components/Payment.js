@@ -65,7 +65,7 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType, 
                 onBlur={() => { }}
                 name="expirationDate"
                 type="text"
-                placeholder="Enter Expiration Date in XX/XX format"
+                placeholder="Enter Expiration Date in MM/YY format"
                 onChange={onChange}
                 value={paymentDetails.expirationDate}
             />

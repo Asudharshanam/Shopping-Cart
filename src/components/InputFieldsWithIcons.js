@@ -52,6 +52,11 @@ export function getCvcIconWithInput(onChange, paymentDetails, cardType) {
         }
     }
 
+    function onClick(event) {
+        event.preventDefault();
+        console.log(cardType)
+    }
+
     return (
         <div className="IconContainerWithInput">
             <input
@@ -62,8 +67,9 @@ export function getCvcIconWithInput(onChange, paymentDetails, cardType) {
                 onChange={onChange}
                 value={paymentDetails.cvc}
             />
-            <img src={Info} className="CvcType" alt="CvcType"></img>
-            <div className="CvcTypeTooltip">{getCvcSideBasedOnCardType(cardType)}</div>
+            <button onClick={onClick} >
+                <img src={Info} className="CvcType" alt="CvcType"></img>
+            </button>
         </div>
     )
 }
