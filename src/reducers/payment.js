@@ -9,7 +9,6 @@ export const initialState = {
         expirationDate: "",
         cvc: ""
     },
-    cardTypeEntered: "",
     errorMessage: {}
 }
 
@@ -31,7 +30,6 @@ export function Payment(state = initialState, action) {
                     ...state.paymentDetails,
                     ...action.changedValue
                 },
-                cardTypeEntered: getCardType(action.changedValue)
             }
 
         case VALIDATE_PAYMENT_FORM_FIELDS:
@@ -49,25 +47,6 @@ export function Payment(state = initialState, action) {
 
         default:
             return state
-    }
-}
-
-export function getCardType(data) {
-
-    let ccNum = data.cardNumber
-    let visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
-    let mastercardRegEx = /^(?:5[1-5][0-9]{14})$/;
-    let amexpRegEx = /^(?:3[47][0-9]{13})$/;
-    let discovRegEx = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
-
-    if (visaRegEx.test(ccNum)) {
-        return "visa"
-    } else if (mastercardRegEx.test(ccNum)) {
-        return "masterCard"
-    } else if (amexpRegEx.test(ccNum)) {
-        return "americanExpress"
-    } else if (discovRegEx.test(ccNum)) {
-        return "discover"
     }
 }
 

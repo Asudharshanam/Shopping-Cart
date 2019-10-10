@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import { paymentDetailsChange, validatePaymentFormFields } from '../actions/payment'
 import Payment from '../components/Payment'
+import { getCardType } from '../utils/sharedUtils'
 
 export const mapStateToProps = state => ({
     paymentDetails: state.payment.paymentDetails,
-    cardType: state.payment.cardTypeEntered,
+    cardType: getCardType(state.payment.paymentDetails.cardNumber),
     errorMessage: state.payment.errorMessage,
 })
 
