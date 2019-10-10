@@ -1,4 +1,5 @@
-import { PAYMENT_DETAILS_CHANGE } from '../actions/payment'
+import { PAYMENT_DETAILS_CHANGE, VALIDATE_PAYMENT_FORM_FIELDS } from '../actions/payment'
+import { validate } from '../utils/sharedUtils';
 
 export const initialState = {
     paymentDetails: {
@@ -8,7 +9,16 @@ export const initialState = {
         expirationDate: "",
         cvc: ""
     },
-    cardTypeEntered: ""
+    cardTypeEntered: "",
+    errorMessage: {}
+}
+
+export const ruleSet = {
+    firstName: ["required", "min:3"],
+    lastName: ["required", "min:3"],
+    cardNumber: ["required", "max:16"],
+    expirationDate: ["required", "max:5", "validDate"],
+    cvc: ["required", "max:3"],
 }
 
 export function Payment(state = initialState, action) {
@@ -24,12 +34,25 @@ export function Payment(state = initialState, action) {
                 cardTypeEntered: getCardType(action.changedValue)
             }
 
+        case VALIDATE_PAYMENT_FORM_FIELDS:
+            return {
+                ...state,
+                errorMessage: {
+                    ...state.errorMessage,
+                    [action.fieldName]: validate(
+                        ruleSet[[action.fieldName]],
+                        action.fieldValue,
+                        "This"
+                    )
+                }
+            }
+
         default:
             return state
     }
 }
 
-function getCardType(data) {
+export function getCardType(data) {
 
     let ccNum = data.cardNumber
     let visaRegEx = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
@@ -47,4 +70,5 @@ function getCardType(data) {
         return "discover"
     }
 }
+
 export default Payment

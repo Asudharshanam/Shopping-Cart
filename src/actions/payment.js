@@ -5,3 +5,12 @@ export function paymentDetailsChange(changedValue) {
         changedValue
     }
 }
+
+export const VALIDATE_PAYMENT_FORM_FIELDS = "VALIDATE_PAYMENT_FORM_FIELDS"
+export function validatePaymentFormFields(fieldName, fieldValue) {
+    return {
+        type: VALIDATE_PAYMENT_FORM_FIELDS,
+        fieldName,
+        fieldValue
+    }
+}

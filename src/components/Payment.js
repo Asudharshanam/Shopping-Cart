@@ -3,11 +3,13 @@ import { withRouter } from 'react-router-dom'
 import { getCreditCardIconWithInput, getCvcIconWithInput } from './InputFieldsWithIcons'
 
 export function Payment({
-    onPaymentDetailsChange,
+    history,
+    cardType,
+    errorMessage,
     paymentDetails,
     submitPaymentDetails,
-    cardType,
-    history
+    onPaymentDetailsChange,
+    validatePaymentFormFields,
 }) {
 
     function onSubmit() {
@@ -18,19 +20,33 @@ export function Payment({
     return (
         <div>
             <PaymentForm
-                onPaymentDetailsChange={onPaymentDetailsChange}
-                paymentDetails={paymentDetails}
                 cardType={cardType}
                 onSubmit={onSubmit}
+                errorMessage={errorMessage}
+                paymentDetails={paymentDetails}
+                onPaymentDetailsChange={onPaymentDetailsChange}
+                validatePaymentFormFields={validatePaymentFormFields}
             />
         </div>
     )
 }
 
-export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType, onSubmit }) {
+export function PaymentForm({
+    validatePaymentFormFields,
+    onPaymentDetailsChange,
+    paymentDetails,
+    errorMessage,
+    cardType,
+    onSubmit,
+}) {
 
     function onChange(event) {
+        validatePaymentFormFields(event.target.name, event.target.value)
         onPaymentDetailsChange({ [event.target.name]: event.target.value })
+    }
+
+    function onBlur(event) {
+        validatePaymentFormFields(event.target.name, event.target.value)
     }
 
     return (
@@ -40,38 +56,44 @@ export function PaymentForm({ onPaymentDetailsChange, paymentDetails, cardType, 
 
             <legend className="Legend">First Name:</legend>
             <input
-                onBlur={() => { }}
+                onBlur={onBlur}
                 name="firstName"
                 type="text"
                 placeholder="Enter First Name"
                 onChange={onChange}
                 value={paymentDetails.firstName}
             />
+            <i className="ErrorMessage">{errorMessage.firstName}</i>
+            
             <legend className="Legend">Last Name:</legend>
             <input
-                onBlur={() => { }}
+                onBlur={onBlur}
                 name="lastName"
                 type="text"
                 placeholder="Enter Last Name"
                 onChange={onChange}
                 value={paymentDetails.lastName}
             />
+            <i className="ErrorMessage">{errorMessage.lastName}</i>
 
             <legend className="Legend">Card Number:</legend>
-            {getCreditCardIconWithInput(onChange, paymentDetails, cardType)}
+            {getCreditCardIconWithInput(onChange, paymentDetails, cardType, onBlur)}
+            <i className="ErrorMessage">{errorMessage.cardNumber}</i>
 
             <legend className="Legend">Expiration Date:</legend>
             <input
-                onBlur={() => { }}
+                onBlur={onBlur}
                 name="expirationDate"
                 type="text"
-                placeholder="Enter Expiration Date in MM/YY format"
+                placeholder="MM/YY format"
                 onChange={onChange}
                 value={paymentDetails.expirationDate}
             />
+            <i className="ErrorMessage">{errorMessage.expirationDate}</i>
 
             <legend className="Legend">CVC:</legend>
-            {getCvcIconWithInput(onChange, paymentDetails, cardType)}
+            {getCvcIconWithInput(onChange, paymentDetails, cardType, onBlur)}
+            <i className="ErrorMessage">{errorMessage.cvc}</i>
 
             <button className="SubmitPaymentButton" type="submit" onClick={onSubmit}>Submit</button>
 

@@ -7,11 +7,11 @@ import Info from '../icons/info.png'
 import OtherCardsCvc from '../icons/masterandvisacvc.jpg'
 import AmexCvc from '../icons/amexcvc.jpg'
 
-export function getCreditCardIconWithInput(onChange, paymentDetails, cardType) {
+export function getCreditCardIconWithInput(onChange, paymentDetails, cardType, onBlur) {
     return (
         <div className="IconContainerWithInput">
             <input
-                onBlur={() => { }}
+                onBlur={onBlur}
                 name="cardNumber"
                 type="number"
                 placeholder="Enter Card Number"
@@ -42,7 +42,7 @@ export function getCreditCardIcon(cardType) {
     }
 }
 
-export function getCvcIconWithInput(onChange, paymentDetails, cardType) {
+export function getCvcIconWithInput(onChange, paymentDetails, cardType, onBlur) {
 
     function getCvcSideBasedOnCardType(cardType) {
         if (cardType === "americanExpress") {
@@ -60,7 +60,7 @@ export function getCvcIconWithInput(onChange, paymentDetails, cardType) {
     return (
         <div className="IconContainerWithInput">
             <input
-                onBlur={() => { }}
+                onBlur={onBlur}
                 name="cvc"
                 type="number"
                 placeholder="Enter CVC"
