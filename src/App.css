@@ -163,6 +163,23 @@ footer {
   background-color: rgba(0,0,0,0.4);
 }
 
+.CVVModalContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: fit-content;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  border-radius: 25px;
+}
+
+.CVVModalDialogCloseButton {
+  margin: 0 0 0 20px;
+  color: #aaaaaa;
+  float: right;
+}
+
 .ModalContent {
   background-color: #fefefe;
   margin: auto;

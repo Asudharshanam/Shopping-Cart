@@ -1,6 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { getCreditCardIconWithInput, getCvcIconWithInput } from './InputFieldsWithIcons'
+import { GetCreditCardIconWithInput, GetCvcIconWithInput } from './InputFieldsWithIcons'
 
 export function Payment({
     history,
@@ -64,7 +64,7 @@ export function PaymentForm({
                 value={paymentDetails.firstName}
             />
             <i className="ErrorMessage">{errorMessage.firstName}</i>
-            
+
             <legend className="Legend">Last Name:</legend>
             <input
                 onBlur={onBlur}
@@ -77,7 +77,12 @@ export function PaymentForm({
             <i className="ErrorMessage">{errorMessage.lastName}</i>
 
             <legend className="Legend">Card Number:</legend>
-            {getCreditCardIconWithInput(onChange, paymentDetails, cardType, onBlur)}
+            <GetCreditCardIconWithInput
+                onChange={onChange}
+                paymentDetails={paymentDetails}
+                cardType={cardType}
+                onBlur={onBlur}
+            />
             <i className="ErrorMessage">{errorMessage.cardNumber}</i>
 
             <legend className="Legend">Expiration Date:</legend>
@@ -92,7 +97,12 @@ export function PaymentForm({
             <i className="ErrorMessage">{errorMessage.expirationDate}</i>
 
             <legend className="Legend">CVC:</legend>
-            {getCvcIconWithInput(onChange, paymentDetails, cardType, onBlur)}
+            <GetCvcIconWithInput
+                onChange={onChange}
+                paymentDetails={paymentDetails}
+                cardType={cardType}
+                onBlur={onBlur}
+            />
             <i className="ErrorMessage">{errorMessage.cvc}</i>
 
             <button className="SubmitPaymentButton" type="submit" onClick={onSubmit}>Submit</button>

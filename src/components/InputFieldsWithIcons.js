@@ -7,7 +7,7 @@ import Info from '../icons/info.png'
 import OtherCardsCvc from '../icons/masterandvisacvc.jpg'
 import AmexCvc from '../icons/amexcvc.jpg'
 
-export function getCreditCardIconWithInput(onChange, paymentDetails, cardType, onBlur) {
+export function GetCreditCardIconWithInput({ onChange, paymentDetails, cardType, onBlur }) {
     return (
         <div className="IconContainerWithInput">
             <input
@@ -42,9 +42,20 @@ export function getCreditCardIcon(cardType) {
     }
 }
 
-export function getCvcIconWithInput(onChange, paymentDetails, cardType, onBlur) {
+export class GetCvcIconWithInput extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            show: false
+        }
+    }
 
-    function getCvcSideBasedOnCardType(cardType) {
+    toggleModal = (show, event) => {
+        event.preventDefault()
+        this.setState({ show: show })
+    }
+
+    getCvcSideBasedOnCardType = cardType => {
         if (cardType === "americanExpress") {
             return <img alt="CvcTypeIcon" src={AmexCvc}></img>
         } else {
@@ -52,24 +63,31 @@ export function getCvcIconWithInput(onChange, paymentDetails, cardType, onBlur) 
         }
     }
 
-    function onClick(event) {
-        event.preventDefault();
-        console.log(cardType)
+    render() {
+        const { onChange, paymentDetails, cardType, onBlur } = this.props
+        const { show } = this.state
+        return (
+            <div>
+                <div className="IconContainerWithInput">
+                    <input
+                        onBlur={onBlur}
+                        name="cvc"
+                        type="number"
+                        placeholder="Enter CVC"
+                        onChange={onChange}
+                        value={paymentDetails.cvc}
+                    />
+                    <button onClick={(e) => this.toggleModal(true, e)} >
+                        <img src={Info} className="CvcType" alt="CvcType"></img>
+                    </button>
+                </div>
+                {show && <div className="ModalDialog">
+                    <div className="CVVModalContent">
+                        <span onClick={(e) => this.toggleModal(false, e)} className="CVVModalDialogCloseButton">x</span>
+                        {this.getCvcSideBasedOnCardType(cardType)}
+                    </div>
+                </div>}
+            </div>
+        )
     }
-
-    return (
-        <div className="IconContainerWithInput">
-            <input
-                onBlur={onBlur}
-                name="cvc"
-                type="number"
-                placeholder="Enter CVC"
-                onChange={onChange}
-                value={paymentDetails.cvc}
-            />
-            <button onClick={onClick} >
-                <img src={Info} className="CvcType" alt="CvcType"></img>
-            </button>
-        </div>
-    )
 }
