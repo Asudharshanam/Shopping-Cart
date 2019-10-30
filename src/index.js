@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 import App from './App'
+import { activityObserver } from './utils/activityObserver'
 
 import * as serviceWorker from './serviceWorker';
 
@@ -15,6 +16,12 @@ const getReduxComposer = middleware => {
 }
 
 const store = createStore(rootReducer, getReduxComposer(applyMiddleware(thunk)))
+
+activityObserver(sessionExpired, ["click"], 8900)
+
+function sessionExpired() {
+    window.location.replace('/session-expired')
+}
 
 ReactDOM.render(
     <Provider store={store}>

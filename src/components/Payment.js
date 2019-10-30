@@ -40,6 +40,16 @@ export function PaymentForm({
     onSubmit,
 }) {
 
+    function getFormattedInput(val) {
+        let sanitizedValue = val.replace("/", "")
+        if (sanitizedValue.length === 4) {
+            let value = val.substring(0, 2) + '/' + val.substring(2, 4)
+            return value
+        } else {
+            return sanitizedValue
+        }
+    }
+
     function onChange(event) {
         validatePaymentFormFields(event.target.name, event.target.value)
         onPaymentDetailsChange({ [event.target.name]: event.target.value })
@@ -90,9 +100,10 @@ export function PaymentForm({
                 onBlur={onBlur}
                 name="expirationDate"
                 type="text"
+                maxLength="4"
                 placeholder="MM/YY format"
                 onChange={onChange}
-                value={paymentDetails.expirationDate}
+                value={getFormattedInput(paymentDetails.expirationDate)}
             />
             <i className="ErrorMessage">{errorMessage.expirationDate}</i>
 

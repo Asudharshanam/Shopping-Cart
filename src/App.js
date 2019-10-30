@@ -10,6 +10,7 @@ import Payment from './containers/Payment'
 import WelcomePage from './components/WelcomePage';
 import SellerForm from './containers/SellerForm';
 import { SubmittedSuccess } from './components/SubmittedSuccess';
+import SessionExpired from './components/SessionExpired';
 
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/success" component={SubmittedSuccess} />
             <Route path="/shopping-items" component={ItemListCards} />
             <Route path="/payment" component={Payment} />
+            <Route path="/session-expired" component={SessionExpired} />
           </div>
         </article>
         <footer>
